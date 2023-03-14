@@ -58,7 +58,7 @@ class PopoverController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeButton.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        closeButton.tintColor = .gray.withAlphaComponent(0.5)
         view.addSubview(closeButton)
         segmentedControl.selectedSegmentIndex = 0
         view.addSubview(segmentedControl)
@@ -70,13 +70,16 @@ class PopoverController: UIViewController{
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.sizeToFit()
+        print(segmentedControl.bounds.height)
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: segmentedControl.bounds.height - 4 , weight: .regular, scale: .default)
+        closeButton.setImage(UIImage(systemName: "xmark.circle.fill", withConfiguration: largeConfig), for: .normal)
+
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -16),
+            closeButton.centerYAnchor.constraint(equalTo: segmentedControl.centerYAnchor),
         ])
-        
     }
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
