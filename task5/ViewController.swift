@@ -9,11 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let myButton = UIButton()
+    let myButton = MyButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         myButton.setTitle("Present", for: .normal)
-        //   myButton.tintColor = .blue
         myButton.setTitleColor(.blue, for: .normal)
         myButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         view.addSubview(myButton)
@@ -98,3 +97,20 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
         return false
     }
 }
+class MyButton: UIButton{
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    override func tintColorDidChange(){
+        super.tintColorDidChange()
+        if(tintAdjustmentMode == .dimmed){
+            setTitleColor(.gray, for: .normal)
+        }else{
+            setTitleColor(.blue, for: .normal)
+        }
+    }
+}
+
