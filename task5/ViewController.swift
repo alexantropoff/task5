@@ -84,11 +84,11 @@ class PopoverController: UIViewController{
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.5) {
                 self.preferredContentSize = CGSize(width: 300, height: 280)
             }
         case 1:
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.5) {
                 self.preferredContentSize = CGSize(width: 300, height: 150)
             }
         default:
